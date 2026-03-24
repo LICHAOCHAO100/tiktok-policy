@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>符文守卫：点阵防御</title>
+
+    <!-- ✅ 修复：路径加 ./ -->
+    <link rel="stylesheet" href="./style.css">
+</head>
+<body>
+    <div class="game-container">
+        <!-- 顶部横幅 -->
+        <div class="top-banner">
+            <div class="wave-info">波次：<span id="wave">1</span> / 10</div>
+            <div class="monster-info">怪物数量：<span id="monster-count">0</span> / <span id="total-monsters">0</span></div>
+            <div class="altar-info">灵枢血量：<span id="altar-health">3</span> / 3</div>
+        </div>
+        
+        <div class="game-content">
+            <!-- 中央：游戏棋盘 -->
+            <div class="center-panel">
+                <div class="game-board" id="game-board">
+                </div>
+                <div class="game-message" id="game-message">
+                </div>
+            </div>
+            
+            <!-- 符文栏 -->
+            <div class="rune-panel">
+                <div class="rune-list" id="rune-list">
+                </div>
+            </div>
+        </div>
+        
+        <!-- 底部横条 -->
+        <div class="bottom-bar">
+            <div class="action-buttons">
+                <button id="start-wave">开始游戏</button>
+                <button id="restart-game">重新开始</button>
+                <button id="exit-game">退出游戏</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- ✅ 修复：必须先加载 config.js -->
+    <script src="./config.js"></script>
+    <script src="./game.js"></script>
+
+    <!-- 音频 -->
+    <audio id="bg-music" loop>
+        <source src="https://assets.mixkit.co/active_storage/sfx/2073/2073-preview.mp3" type="audio/mpeg">
+    </audio>
+    <audio id="button-sound">
+        <source src="https://assets.mixkit.co/active_storage/sfx/2568/2568-preview.mp3" type="audio/mpeg">
+    </audio>
+    <audio id="bullet-sound">
+        <source src="https://assets.mixkit.co/active_storage/sfx/2562/2562-preview.mp3" type="audio/mpeg">
+    </audio>
+    <audio id="altar-death-sound">
+        <source src="https://assets.mixkit.co/active_storage/sfx/2702/2702-preview.mp3" type="audio/mpeg">
+    </audio>
+    <audio id="place-rune-sound">
+        <source src="https://assets.mixkit.co/active_storage/sfx/2569/2569-preview.mp3" type="audio/mpeg">
+    </audio>
+</body>
+</html>

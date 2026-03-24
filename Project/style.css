@@ -1,0 +1,574 @@
+/* 全局样式 */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: Arial, sans-serif;
+    background-color: #1a1a2e;
+    color: #ffffff;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+    padding: 0;
+    margin: 0;
+}
+
+/* 游戏容器 */
+.game-container {
+    background-color: #16213e;
+    border-radius: 10px;
+    padding: 10px;
+    box-shadow: 0 0 20px rgba(0, 0, 0, 0.5);
+    width: 100%;
+    height: 100vh;
+    display: flex;
+    flex-direction: column;
+    margin: 0;
+    box-sizing: border-box;
+    overflow: hidden;
+}
+
+/* 顶部横幅 */
+.top-banner {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 8px;
+    font-size: 10px;
+    font-weight: bold;
+    padding: 6px;
+    background-color: #0f3460;
+    border-radius: 5px;
+    flex-direction: row;
+    flex-wrap: nowrap;
+    gap: 3px;
+    align-items: center;
+    min-height: 40px;
+}
+
+.wave-info, .monster-info, .altar-info {
+    padding: 2px 4px;
+    background-color: #1a1a2e;
+    border-radius: 3px;
+    font-size: 9px;
+    flex: 1;
+    text-align: center;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+#altar-health {
+    transition: color 0.5s ease;
+}
+
+#altar-health.health-decrease {
+    color: #e94560;
+    animation: health-flash 1s ease-in-out;
+}
+
+#altar-health.health-increase {
+    color: #4ecdc4;
+    animation: health-flash 1s ease-in-out;
+}
+
+@keyframes health-flash {
+    0% { opacity: 1; }
+    50% { opacity: 0.5; }
+    100% { opacity: 1; }
+}
+
+/* 游戏内容区域 */
+.game-content {
+    display: flex;
+    flex: 1;
+    flex-direction: column;
+    align-items: center;
+    gap: 5px;
+    margin-bottom: 5px;
+    justify-content: flex-start;
+    overflow: hidden;
+}
+
+/* 中央：游戏棋盘 */
+.center-panel {
+    width: 100%;
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    overflow: hidden;
+}
+
+/* 符文栏 */
+.rune-panel {
+    width: 100%;
+    background-color: #0f3460;
+    padding: 8px;
+    border-radius: 5px;
+    display: flex;
+    flex-direction: column;
+    margin-bottom: 5px;
+    flex-shrink: 0;
+}
+
+.rune-panel h3 {
+    margin-bottom: 8px;
+    text-align: center;
+    font-size: 14px;
+    margin-top: 3px;
+}
+
+.rune-list {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    gap: 10px;
+    justify-content: center;
+}
+
+.rune-item {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 8px;
+    background-color: #1a1a2e;
+    border-radius: 5px;
+    min-height: 80px;
+    min-width: 70px;
+    flex: 1 0 calc(25% - 10px);
+    max-width: 100px;
+}
+
+.rune-item .rune {
+    width: 50px;
+    height: 50px;
+    margin-bottom: 3px;
+    font-size: 12px;
+}
+
+.rune-name {
+    font-size: 10px;
+    text-align: center;
+    margin-bottom: 3px;
+    color: #ffffff;
+}
+
+.game-board {
+    display: grid;
+    grid-template-columns: repeat(9, 1fr);
+    grid-template-rows: repeat(9, 1fr);
+    gap: 3px;
+    background-color: #0f3460;
+    padding: 8px;
+    border-radius: 5px;
+    aspect-ratio: 1;
+    width: 100%;
+    max-width: 480px;
+    margin-bottom: 5px;
+    position: relative;
+    align-self: center;
+    flex: 1;
+    max-height: none;
+}
+
+.board-cell {
+    background-color: #1a1a2e;
+    border-radius: 3px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    cursor: pointer;
+    position: relative;
+    transition: all 0.2s ease;
+    font-size: 10px;
+}
+
+.board-cell:hover {
+    background-color: #2c2c54;
+}
+
+.board-cell.altar {
+    background-color: #e94560;
+    animation: pulse 2s infinite;
+}
+
+@keyframes pulse {
+    0% { transform: scale(1); }
+    50% { transform: scale(1.05); }
+    100% { transform: scale(1); }
+}
+
+/* 游戏消息 */
+.game-message {
+    background-color: #0f3460;
+    padding: 8px;
+    border-radius: 5px;
+    text-align: center;
+    font-size: 14px;
+    font-weight: bold;
+    min-height: 30px;
+    width: 100%;
+    margin-bottom: 5px;
+    flex-shrink: 0;
+}
+
+/* 底部横条：合成按钮 */
+.bottom-bar {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 10px;
+    background-color: #0f3460;
+    padding: 8px;
+    border-radius: 5px;
+    flex-shrink: 0;
+}
+
+/* 操作按钮 */
+.action-buttons {
+    display: flex;
+    gap: 8px;
+    flex-wrap: wrap;
+    justify-content: center;
+    width: 100%;
+}
+
+.action-buttons button {
+    padding: 10px 20px;
+    background-color: #e94560;
+    color: #ffffff;
+    border: none;
+    border-radius: 5px;
+    font-size: 14px;
+    font-weight: bold;
+    cursor: pointer;
+    transition: all 0.2s ease;
+    flex: 1;
+    min-width: 100px;
+    text-align: center;
+}
+
+.action-buttons button:hover {
+    background-color: #c73651;
+    transform: translateY(-2px);
+}
+
+.action-buttons button:disabled {
+    background-color: #666;
+    cursor: not-allowed;
+    transform: none;
+}
+
+/* 符文样式 */
+.rune {
+    width: 100%;
+    height: 100%;
+    border-radius: 50%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    font-weight: bold;
+    font-size: 14px;
+    cursor: pointer;
+    transition: all 0.2s ease;
+    text-align: center;
+}
+
+.rune:hover {
+    transform: scale(1.1);
+}
+
+.rune.attacking {
+    animation: attack-flash 0.2s ease-in-out;
+}
+
+.rune.highlight {
+    animation: highlight-pulse 1.5s infinite;
+    box-shadow: 0 0 15px rgba(255, 215, 0, 0.8);
+}
+
+@keyframes highlight-pulse {
+    0% { transform: scale(1); box-shadow: 0 0 15px rgba(255, 215, 0, 0.8); }
+    50% { transform: scale(1.05); box-shadow: 0 0 25px rgba(255, 215, 0, 1); }
+    100% { transform: scale(1); box-shadow: 0 0 15px rgba(255, 215, 0, 0.8); }
+}
+
+.merge-button {
+    margin-top: 5px;
+    padding: 5px 10px;
+    background-color: #ffd700;
+    color: #1a1a2e;
+    border: none;
+    border-radius: 3px;
+    font-size: 10px;
+    font-weight: bold;
+    cursor: pointer;
+    transition: all 0.2s ease;
+    width: 100%;
+}
+
+.merge-button:hover {
+    background-color: #ffed4e;
+    transform: translateY(-2px);
+}
+
+@keyframes attack-flash {
+    0% { opacity: 1; }
+    50% { opacity: 0.5; }
+    100% { opacity: 1; }
+}
+
+.rune.level-1 {
+    background-color: #4ecdc4;
+    color: #1a1a2e;
+}
+
+.rune.level-2 {
+    background-color: #45b7d1;
+    color: #1a1a2e;
+}
+
+.rune.level-3 {
+    background-color: #96ceb4;
+    color: #1a1a2e;
+}
+
+.rune.level-4 {
+    background-color: #ff6b6b;
+    color: #ffffff;
+}
+
+/* 怪物样式 */
+.monster {
+    width: 80%;
+    height: 80%;
+    border-radius: 50%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-weight: bold;
+    font-size: 10px;
+    animation: monster-move 0.5s ease-in-out;
+}
+
+@keyframes monster-move {
+    0% { transform: scale(0.8); opacity: 0.5; }
+    100% { transform: scale(1); opacity: 1; }
+}
+
+.monster.normal {
+    background-color: #feca57;
+    color: #1a1a2e;
+}
+
+.monster.elite {
+    background-color: #ff9ff3;
+    color: #1a1a2e;
+}
+
+.monster.boss {
+    background-color: #54a0ff;
+    color: #ffffff;
+    animation: boss-pulse 1s infinite;
+}
+
+@keyframes boss-pulse {
+    0% { transform: scale(1); box-shadow: 0 0 0 0 rgba(84, 160, 255, 0.7); }
+    70% { transform: scale(1.05); box-shadow: 0 0 0 10px rgba(84, 160, 255, 0); }
+    100% { transform: scale(1); box-shadow: 0 0 0 0 rgba(84, 160, 255, 0); }
+}
+
+/* 数量显示 */
+.count {
+    font-size: 14px;
+    font-weight: bold;
+}
+
+/* 响应式设计 - 手机屏幕 */
+@media (max-width: 768px) {
+    body {
+        min-height: 100vh;
+        padding: 0;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+    }
+    
+    .game-container {
+        width: 100%;
+        height: 100vh;
+        padding: 10px;
+        display: flex;
+        flex-direction: column;
+        margin: 0;
+        border-radius: 0;
+    }
+    
+    /* 顶部横幅 */
+    .top-banner {
+        flex-direction: row;
+        gap: 5px;
+        padding: 8px;
+        font-size: 10px;
+        text-align: center;
+        min-height: 35px;
+    }
+    
+    .wave-info, .monster-info, .altar-info {
+        text-align: center;
+        padding: 3px;
+        font-size: 8px;
+    }
+    
+    /* 游戏内容区域 */
+    .game-content {
+        flex-direction: column;
+        align-items: center;
+        gap: 10px;
+        flex: 1;
+    }
+    
+    .rune-list {
+        flex-direction: row;
+        flex-wrap: wrap;
+        gap: 8px;
+        justify-content: center;
+    }
+    
+    .rune-item {
+        min-height: 70px;
+        min-width: 60px;
+        padding: 6px;
+        flex: 1 0 calc(25% - 8px);
+        max-width: 80px;
+    }
+    
+    .rune-item .rune {
+        width: 40px;
+        height: 40px;
+        font-size: 10px;
+    }
+    
+    .rune-name {
+        font-size: 8px;
+        text-align: center;
+    }
+    
+    /* 中央：游戏棋盘 */
+    .center-panel {
+        width: 100%;
+        flex: 1;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+    }
+    
+    .game-board {
+        width: 95%;
+        max-width: 400px;
+        aspect-ratio: 1;
+        margin-bottom: 10px;
+        padding: 6px;
+        gap: 2px;
+    }
+    
+    .board-cell {
+        font-size: 8px;
+    }
+    
+    .game-message {
+        width: 100%;
+        font-size: 12px;
+        padding: 8px;
+        text-align: center;
+        min-height: 25px;
+    }
+    
+    /* 底部横条：合成按钮 */
+    .bottom-bar {
+        flex-direction: column;
+        align-items: stretch;
+        gap: 8px;
+        padding: 8px;
+    }
+    
+    /* 操作按钮 */
+    .action-buttons {
+        justify-content: center;
+        flex-wrap: wrap;
+        gap: 6px;
+    }
+    
+    .action-buttons button {
+        padding: 8px 12px;
+        font-size: 12px;
+        flex: 1;
+        min-width: 80px;
+    }
+    
+    /* 怪物样式 */
+    .monster {
+        font-size: 8px;
+    }
+    
+    /* 数量显示 */
+    .count {
+        font-size: 12px;
+    }
+    
+    /* 合成按钮 */
+    .merge-button {
+        padding: 4px 8px;
+        font-size: 8px;
+    }
+}
+
+/* 竖屏模式优化 */
+@media (orientation: portrait) {
+    body {
+        min-height: 100vh;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+    }
+    
+    .game-container {
+        width: 100%;
+        height: 100vh;
+        margin: 0;
+        border-radius: 0;
+    }
+    
+    .game-content {
+        flex-direction: column;
+        align-items: center;
+        gap: 10px;
+    }
+    
+    .rune-list {
+        flex-direction: row;
+        flex-wrap: wrap;
+        justify-content: center;
+    }
+    
+    .game-board {
+        width: 95%;
+        max-width: 400px;
+        aspect-ratio: 1;
+    }
+    
+    .bottom-bar {
+        flex-direction: column;
+        align-items: stretch;
+    }
+    
+    .action-buttons {
+        justify-content: center;
+    }
+}
